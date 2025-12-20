@@ -5,12 +5,17 @@ import { ExternalLink, Eye } from "lucide-react";
 import { HeroSection } from "@/components/HeroSection";
 
 const Projects = () => {
+  // Get the base URL from Vite's import.meta.env
+  const getImagePath = (imageName: string) => {
+    return `${import.meta.env.BASE_URL}images/${imageName}`;
+  };
+
   const projects = [
     {
       title: "RuviTech",
       description:
         "End-to-end tech solutions designed for business transformation and growth. Expert guidance and support for IT projects, ensuring successful implementation and management.",
-      image: "/images/ruvitech.png",
+      image: getImagePath("ruvitech.png"),
       technologies: ["React", "Node.js", "Cloud Services", "Salesforce"],
       liveUrl: "https://www.ruvitech.co/",
       features: [
@@ -24,7 +29,7 @@ const Projects = () => {
       title: "Tint Wrap Protect",
       description:
         "Ultimate car protection services specializing in vehicle tinting, wrapping, and protection. Enhance your vehicle's style and protection with professional services.",
-      image: "/images/tintwrapprotect.png",
+      image: getImagePath("tintwrapprotect.png"),
       technologies: ["HTML5", "CSS3", "JavaScript", "Responsive Design"],
       liveUrl: "https://www.tintwrapprotect.com/home",
       features: [
@@ -38,7 +43,7 @@ const Projects = () => {
       title: "Palace Dekho",
       description:
         "Comprehensive wedding planning platform connecting couples with palace venues across India. Plan your dream wedding with personalized services and venue management.",
-      image: "/images/palacedekho.png",
+      image: getImagePath("palacedekho.png"),
       technologies: ["React", "PHP", "MySQL", "WordPress"],
       liveUrl: "https://palacedekho.com/",
       features: [
@@ -52,7 +57,7 @@ const Projects = () => {
       title: "Flying Eagle",
       description:
         "Innovative web development agency creating thoughtful and purposeful websites. Discover features that make your website beautiful and functional for global clients.",
-      image: "/images/flying-eagle.png",
+      image: getImagePath("flying-eagle.png"),
       technologies: ["React", "Firebase", "Modern Design", "Responsive Web"],
       liveUrl: "https://flying-eagle-56d1a.web.app/",
       features: [
@@ -66,7 +71,7 @@ const Projects = () => {
       title: "ClickShop Direct",
       description:
         "E-commerce platform offering personalized gifts and products with free next-day delivery. Complete online shopping experience with extensive gift categories.",
-      image: "/images/clickshop.png",
+      image: getImagePath("clickshop.png"),
       technologies: [
         "Shopify",
         "E-commerce",
@@ -85,7 +90,7 @@ const Projects = () => {
       title: "Mathak Primary School",
       description:
         "Educational institution website showcasing school facilities, activities, and information. Comprehensive platform for students, parents, and faculty communication.",
-      image: "/images/mathak-school.png",
+      image: getImagePath("mathak-school.png"),
       technologies: ["HTML", "CSS", "JavaScript", "Educational CMS"],
       liveUrl:
         "https://vivek-baldaniya.github.io/Mathak-Primary-School-Website/",
@@ -143,6 +148,12 @@ const Projects = () => {
                       src={project.image}
                       alt={project.title}
                       className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                      onError={(e) => {
+                        const target = e.target as HTMLImageElement;
+                        target.src = `${
+                          import.meta.env.BASE_URL
+                        }placeholder.svg`;
+                      }}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
